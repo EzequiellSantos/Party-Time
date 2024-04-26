@@ -6,6 +6,8 @@ const cors = require("cors")
 
 // routes
 const authRouter = require("./routes/authRoutes.js")
+const userRouter = require("./routes/userRoutes.js")
+
 
 // middlewares
 
@@ -19,8 +21,9 @@ const app = express()
 app.use(cors())
 app.use(express.json())
 app.use(express.static('public'))
-//atrela as rotas no express
+//atrelar as rotas no express
 app.use("/api/auth", authRouter)
+app.use("/api/user", userRouter)
 
 // Conexão mongodb
 mongoose.connect(`mongodb://127.0.0.1/${dbname}`)
