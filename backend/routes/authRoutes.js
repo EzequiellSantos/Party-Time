@@ -23,7 +23,7 @@ router.post("/register", async (req, res) => {
         return res.status(400).json({ error: 'As senhas não coincidem!'})
     }
 
-    // cehck if user exists
+    // check if user exists
     const emailExists = await User.findOne({ email: email})
 
     if(emailExists){
