@@ -14,7 +14,7 @@ const userRouter = require("./routes/userRoutes.js")
 
 // configurações
 const dbname = "partyTimeb"
-const port = 3000
+const port = 3000   
 
 const app = express()
 

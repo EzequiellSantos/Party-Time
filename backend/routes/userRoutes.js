@@ -59,9 +59,9 @@ router.put("/", verifyToken, async (req, res) => {
     // check if password match
     if(password != confirmpassword){
 
-        res.status(401).json({error: "As senhas não coincidem"})
-        //change password
+        res.status(401).json({ error: "As senhas não coincidem" })
 
+        //change password
     } else if(password == confirmpassword && password != null){
 
         // creating password
@@ -77,8 +77,8 @@ router.put("/", verifyToken, async (req, res) => {
     try {
 
         // returns updated data
-        const updateUser = await User.findOneAndUpdate({_id: userId}, {$set: updateData}, {new: true})
-        res.json({ error: null, msg: "usuárion atualizado com sucesso!", data: updateUser})
+        const updateUser = await User.findOneAndUpdate({ _id: userId }, { $set: updateData }, { new: true })
+        res.json({ error: null, msg: "Usuário atualizado com sucesso!", data: updateUser })
         
     } catch (error) {
 
