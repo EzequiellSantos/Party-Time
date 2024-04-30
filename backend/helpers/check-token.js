@@ -1,12 +1,11 @@
-// verifyb token
 const jwt = require("jsonwebtoken")
 
-// midDleware to validate token
+// middleware to validate token
 const checkToken = (req, res, next) => {
 
-    const token = req.header('auth-token')
+    const token = req.header("auth-token")
 
-    if(!token){''
+    if(!token){
 
         return res.status(401).json({ error: "Acesso negado!"})
 
@@ -20,7 +19,7 @@ const checkToken = (req, res, next) => {
 
     } catch (err) {
      
-        res.status(400).json({error: "Token Inválido!"})
+        res.status(400).json({ error: "Token Inválido!" })
         
     }
 

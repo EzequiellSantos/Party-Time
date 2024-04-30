@@ -15,25 +15,30 @@ router.post("/register", async (req, res) => {
 
     // check for required fields
     if(name == null || email == null || password == null || confirmpassword == null ){
+
         return res.status(400).json({error: 'Por favor Preencha todos os campos!'})
+
     }
 
     // check if password match
     if(password != confirmpassword){
+
         return res.status(400).json({ error: 'As senhas não coincidem!'})
+        
     }
 
     // check if user exists
     const emailExists = await User.findOne({ email: email})
 
     if(emailExists){
+
         return res.status(400).json({error: "O e-mail informado ja está em uso!"})
+
     }
 
     // create password
     const salt = await bcrypt.genSalt(12)
     const passwordhash = await bcrypt.hash(password, salt)
-    console.log(passwordhash);
 
     const user = new User({
         name: name,
@@ -53,7 +58,7 @@ router.post("/register", async (req, res) => {
                 name: newUser.name,
                 id: newUser._id
             },
-            "nossoscret"
+            "nossosecret"
 
         )
 
@@ -78,7 +83,7 @@ router.post("/login", async (req, res) => {
     const user = await User.findOne({email: email})
 
     if(!user){
-        return res.status(400).json({ error: "Não há usuário cadastrado com esse e-mail!"})
+        return res.status(400).json({ error: "Não há usuário cadastrado com este e-mail!"})
     }
 
     // check if password match
@@ -96,7 +101,7 @@ router.post("/login", async (req, res) => {
             name: user.name,
             id: user._id
         },
-        "nossoscret"
+        "nossosecret"
 
     )
 
