@@ -14,25 +14,25 @@ router.post("/register", async (req, res) => {
     const confirmpassword = req.body.confirmpassword
 
     // check for required fields
-    if(name == null || email == null || password == null || confirmpassword == null ){
+    if (name == null || email == null || password == null || confirmpassword == null) {
 
-        return res.status(400).json({error: 'Por favor Preencha todos os campos!'})
+        return res.status(400).json({ error: 'Por favor Preencha todos os campos!' })
 
     }
 
     // check if password match
-    if(password != confirmpassword){
+    if (password != confirmpassword) {
 
-        return res.status(400).json({ error: 'As senhas não coincidem!'})
-        
+        return res.status(400).json({ error: 'As senhas não coincidem!' })
+
     }
 
     // check if user exists
-    const emailExists = await User.findOne({ email: email})
+    const emailExists = await User.findOne({ email: email })
 
-    if(emailExists){
+    if (emailExists) {
 
-        return res.status(400).json({error: "O e-mail informado ja está em uso!"})
+        return res.status(400).json({ error: "O e-mail informado ja está em uso!" })
 
     }
 
@@ -47,12 +47,12 @@ router.post("/register", async (req, res) => {
     })
 
     try {
-        
+
         const newUser = await user.save()
 
         // create token 
         const token = jwt.sign(
-            
+
             //payload
             {
                 name: newUser.name,
@@ -63,11 +63,11 @@ router.post("/register", async (req, res) => {
         )
 
         // return token
-        res.json({error: null, msg:"Você realizou o cadastro com sucesso", token: token, userId: newUser._id})
+        res.json({ error: null, msg: "Você realizou o cadastro com sucesso", token: token, userId: newUser._id })
 
     } catch (error) {
-        
-        res.status(400).json({error})
+
+        res.status(400).json({ error })
 
     }
 
@@ -80,22 +80,22 @@ router.post("/login", async (req, res) => {
     const password = req.body.password
 
     // check if  user exists
-    const user = await User.findOne({email: email})
+    const user = await User.findOne({ email: email })
 
-    if(!user){
-        return res.status(400).json({ error: "Não há usuário cadastrado com este e-mail!"})
+    if (!user) {
+        return res.status(400).json({ error: "Não há usuário cadastrado com este e-mail!" })
     }
 
     // check if password match
     const checkPassword = await bcrypt.compare(password, user.password)
 
-    if(!checkPassword){
-        return res.status(400).json({ error: "Senha inválida!"})
+    if (!checkPassword) {
+        return res.status(400).json({ error: "Senha inválida!" })
     }
 
     // create token 
     const token = jwt.sign(
-    
+
         //payload
         {
             name: user.name,
@@ -106,7 +106,7 @@ router.post("/login", async (req, res) => {
     )
 
     // return token
-    res.json({error: null, msg:"Você está autenticado!", token: token, userId: user._id})
+    res.json({ error: null, msg: "Você está autenticado!", token: token, userId: user._id })
 
 })
 

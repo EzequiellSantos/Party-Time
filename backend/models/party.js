@@ -18,7 +18,7 @@ const partySchema = new mongoose.Schema({
     privacy: {
         type: Boolean
     },
-    userId:{
+    userId: {
         type: mongoose.Schema.Types.ObjectId
     }
 

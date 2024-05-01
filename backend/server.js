@@ -15,7 +15,7 @@ const partyRouter = require("./routes/partyRoutes.js")
 
 // configurações
 const dbname = "partyTimeb"
-const port = 3000   
+const port = 3000
 
 const app = express()
 
@@ -32,7 +32,7 @@ mongoose.connect(`mongodb://127.0.0.1/${dbname}`)
 
 app.get("/", (req, res) => {
 
-    res.json({message: "Rota aberta"})
+    res.json({ message: "Rota aberta" })
 
 })
 

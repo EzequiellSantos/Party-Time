@@ -5,9 +5,9 @@ const User = require("../models/user")
 // get user by jwt token
 const getUserByToken = async (token) => {
 
-    if(!token){
+    if (!token) {
 
-        return res.status(401).json({ error: "Acesso negado!"})
+        return res.status(401).json({ error: "Acesso negado!" })
 
     }
 
@@ -16,7 +16,7 @@ const getUserByToken = async (token) => {
 
     const userId = decoded.id
 
-    const user = await User.findOne({_id: userId})
+    const user = await User.findOne({ _id: userId })
 
     return user
 
