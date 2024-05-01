@@ -148,7 +148,16 @@ router.get("/userparty/:id", verifyToken, async ( req, res ) => {
 
         const party = await Party.findOne({ _id: partyId, userId: userId })
 
-        res.json({ error: null, party: party })
+        // check if the party was deleted
+        if(party == null){
+
+            res.json({ error: "Esse evento foi removido", })  
+
+        } else{
+
+            res.json({ error: null, party: party })
+
+        }
 
     } catch (error) {
         
@@ -198,7 +207,30 @@ router.get("/:id", async (req, res) => {
 
     }
 
+})
 
+// delete a party
+router.delete("/", verifyToken, async (req, res) => {
+
+    const token = req.header('auth-token')
+
+    const user = await getUserByToken(token)
+
+    const partyId = req.body.id
+
+    const userId = user._id.toString()
+
+    try {
+
+        await Party.deleteOne({ _id: partyId, userId: userId })
+
+        res.json({ error: null,  msg: 'Evento deletado com sucesso'})
+        
+    } catch (err) {
+
+        res.status(400).json({ error: "Acesso Negado" })
+
+    }
 
 })
 
