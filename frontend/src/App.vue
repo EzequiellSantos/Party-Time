@@ -21,5 +21,24 @@
 
 
 <style>
-  
+  * {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: Helvetica;
+    color: #444;
+  }  
+
+  .container{
+    min-height: 300px;
+  }
+
+  a{
+    transition: .4s ease-in;
+  }
+
+  a:is(:hover, :focus){
+    color: #c1b695;
+  }
+
 </style>
