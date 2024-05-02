@@ -8,3 +8,14 @@
 <script>
 
 </script>
+
+<style>
+  .home{
+    margin: auto;
+    text-align: center;
+  }
+
+  img, h1{
+    margin: 10px;
+  }
+</style>
