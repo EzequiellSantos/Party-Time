@@ -1,6 +1,6 @@
 <template>
     <footer>
-        <h3>Party Time &copy;</h3>
+        <h3>Party Time &copy; 2024</h3>
         <p>O melhor lugar para seus eventos!</p>
     </footer>
 </template>
@@ -17,7 +17,7 @@
 
         background-color: #191815;
         width: 100%;
-        height: 210px;
+        height: 210px;                  
         display: flex;
         align-items: center;
         flex-direction: column;
