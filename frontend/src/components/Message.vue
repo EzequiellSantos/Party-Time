@@ -14,7 +14,9 @@
 
     /* classe de exibição do elemento */
     .msg{
-        max-width: 400px;
+        width: calc(60% - 10px);
+        max-width: 500px;
+        min-width: 280px;
         margin: 20px auto;
         padding: 15px;
         text-align: center;

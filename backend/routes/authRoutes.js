@@ -16,7 +16,7 @@ router.post("/register", async (req, res) => {
     // check for required fields
     if (name == null || email == null || password == null || confirmpassword == null) {
 
-        return res.status(400).json({ error: 'Por favor Preencha todos os campos!' })
+        return res.status(400).json({ error: 'Por favor preencha todos os campos!' })
 
     }
 
