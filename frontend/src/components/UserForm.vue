@@ -24,7 +24,7 @@
 
             <div class="input-container">
                 <label for="confirmpassword">Senha</label>
-                <input type="password" id="copnfirmpassword" name="copnfirmpassword" v-model="copnfirmpassword"  placeholder="Confirme a sua senha">
+                <input type="password" id="copnfirmpassword" name="copnfirmpassword" v-model="confirmpassword"  placeholder="Confirme a sua senha">
             </div>
 
             <InputSubmit :text="btnText"/>
@@ -46,7 +46,7 @@
                 /* ==>]  pois aqui inicialmente o valor do inmput é null*/
                 email: null,
                 password: null,
-                confirmpassord: null,
+                confirmpassword: null,
                 msg: null,
                 msgClass: null
             }
@@ -64,7 +64,59 @@
                 // não fazer mais submissao por html e sim por JS
                 e.preventDefault()
 
-                console.log('Pikaaaa escrota');
+                const data = {
+                    name: this.name,
+                    email: this.email,
+                    password: this.password,
+                    confirmpassword: this.confirmpassword
+                }
+
+                // transformando os dados em JSON
+                const jsonData = JSON.stringify(data)
+
+                await fetch("http://127.0.0.1:3000/api/auth/register", {
+                    method: "POST",
+                    headers: {"Content-type":"application/json"},
+                    body: jsonData
+                })
+                .then((respo) => respo.json())
+                .then((data) => {
+
+                    let auth = false
+
+                    // verificando se há algum error
+                    if(data.error){
+                        this.msg = data.error // exibindo mensagem de error  na notificação
+                        this.msgClass = "error" // definindo as classes de estatus como error
+                    } else {
+
+                        auth = true
+                        
+                        this.msg = data.msg
+                        this.msgClass = 'sucess'
+
+                        // emit event for auth an user
+
+                    }
+
+                    setTimeout(() => {
+                        if(!auth){
+                            this.msg = null
+                        } else {
+
+                            //redirect
+                            this.$router.push("dashboard")
+
+                        }
+
+                    }, 2000)
+
+                })
+                .catch((err) => {
+                    console.log(err);
+                })
+
+
             }
 
         }
@@ -137,7 +189,7 @@
         transition: .2s ease-in;
     }
 
-    input[type=submit]:is(:hover, :focus){
+    input[type=submit]:is(:hover, :active){
         background-color: #757575;
     }
 
