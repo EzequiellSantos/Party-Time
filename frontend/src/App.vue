@@ -41,4 +41,22 @@
     color: #c1b695;
   }
 
+  input[type=submit]{
+    width: 100px;
+    padding: 10px;
+    margin: 10px 0;
+    font-size: 1rem;
+    border-radius: 7px;
+    border: none;
+    background-color: #4d4d4d;
+    color: #fff;
+    outline: 0;
+    cursor: pointer;
+    transition: .2s ease-in;
+  }
+
+  input[type=submit]:is(:hover, :active){
+    background-color: #757575;
+  }
+
 </style>

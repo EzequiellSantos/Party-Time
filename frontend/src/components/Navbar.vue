@@ -8,7 +8,7 @@
 
         <div id="nav-links" ref="links">
             <router-link to="/" class="links-menu">Home</router-link>
-            <router-link to="/about" class="links-menu" v-show="!authenticated">Entrar</router-link>
+            <router-link to="/login" class="links-menu" v-show="!authenticated">Entrar</router-link>
             <router-link to="/register" class="links-menu" v-show="!authenticated">Cadastrar</router-link>
             <router-link to="/dashboard" class="links-menu" v-show="authenticated">Dashboard</router-link>
             <router-link to="/profile" class="links-menu" v-show="authenticated">Configuração</router-link>

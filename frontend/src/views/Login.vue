@@ -1,13 +1,34 @@
 <template>
+
     <div id="login">
-        <h1>Login</h1>
-        <p>prossiga com o login para desfrutar melhor da aplicação</p>
-        <form></form>
+
+        <h1>Entrar no Party Time</h1>
+
+        <LoginForm />
+
     </div>
+
 </template>
+
+<script>
+
+import LoginForm from '../components/LoginForm.vue'
+
+export default {
+    components:{
+        LoginForm
+    }
+}
+</script>
 
 <style>
     #login{
         text-align: center;
+        padding: 40px 0px 100px 0px;
     }
+
+    h1{
+        margin-bottom: 10px;
+    }
+
 </style>
