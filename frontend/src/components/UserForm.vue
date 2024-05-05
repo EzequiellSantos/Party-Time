@@ -48,7 +48,8 @@
                 password: null,
                 confirmpassword: null,
                 msg: null,
-                msgClass: null
+                msgClass: null,
+                isVisible: false
             }
         },
         props: ["user", "page", "btnText"],
@@ -75,9 +76,11 @@
                 const jsonData = JSON.stringify(data)
 
                 await fetch("http://127.0.0.1:3000/api/auth/register", {
+
                     method: "POST",
                     headers: {"Content-type":"application/json"},
                     body: jsonData
+                    
                 })
                 .then((respo) => respo.json())
                 .then((data) => {
@@ -86,8 +89,15 @@
 
                     // verificando se há algum error
                     if(data.error){
+
                         this.msg = data.error // exibindo mensagem de error  na notificação
                         this.msgClass = "error" // definindo as classes de estatus como error
+
+                        window.scrollTo({
+                        top: 100,
+                        behavior: 'smooth'
+                        })
+
                     } else {
 
                         auth = true
@@ -95,17 +105,26 @@
                         this.msg = data.msg
                         this.msgClass = 'sucess'
 
+                        window.scrollTo({
+                        top: 100,
+                        behavior: 'smooth'
+                        })
+
                         // emit event for auth an user
+                        this.$store.commit("authenticated", { token: data.token, userId: data.userId })
+                        
 
                     }
 
                     setTimeout(() => {
                         if(!auth){
+
                             this.msg = null
+
                         } else {
 
                             //redirect
-                            this.$router.push("dashboard")
+                            this.$router.push("Dashboard")
 
                         }
 
@@ -113,9 +132,10 @@
 
                 })
                 .catch((err) => {
-                    console.log(err);
-                })
 
+                    console.log(err);
+
+                })
 
             }
 
@@ -126,7 +146,6 @@
 
 <style scoped>
     #user-form{
-
         max-width: 600px;
         width: 60%;
         margin: auto;
@@ -135,7 +154,6 @@
         justify-content: center;
         align-items: center;
         flex-direction: column;
-
     }
 
     .input-container{

@@ -39,5 +39,5 @@ export default createStore({
     }
 
   },
-  modules: [vuexLocal.plugin]
+  plugins: [vuexLocal.plugin]
 })
