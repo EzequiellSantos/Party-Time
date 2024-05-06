@@ -14,8 +14,8 @@
             <router-link to="/profile" class="links-menu" v-show="authenticated">Configuração</router-link>
         </div>
 
-        <button @click="logout($event)" v-show="authenticated">
-            <img width="48" height="36" src="https://img.icons8.com/sf-regular/48/exit.png" alt="exit" />
+        <button id="exitContainer" @click="logout($event)" v-show="authenticated">
+            <img id="exitImage" width="48" height="36" src="https://img.icons8.com/sf-regular/48/exit.png" alt="exit" />
         </button>
 
         <div id="menu" @click="clicou">
@@ -90,9 +90,6 @@
 
     #menu{
         display: none;
-        width: 48px;
-        height: 38px;
-        display: flex;
         align-content: center;
         justify-content: center;
     }
@@ -114,6 +111,10 @@
     #logo-container, #nav-links, #nav-title {
         width: 400px;
     } 
+
+    #exitContainer{
+        width: 50px;
+    }
 
     #nav-links {
         display: flex;
@@ -153,9 +154,10 @@
         }
         
         #menu{
-            display: block;
+            display: flex;
             cursor: default;
             width: 48px;
+            height: 38px;
         }
 
         #iconMenuArrow{
@@ -166,12 +168,13 @@
             display: block;
         }
 
-        .links-menu{
-
-        }
-
         #logo-container{
             width: 30px;
+        }
+
+        #exitContainer{
+            position: absolute;
+            right: 13%;
         }
 
     }
