@@ -5,6 +5,8 @@
         <form id="user-form" @submit="page === 'register' ? register($event) : update($event)">
             <!-- @submit serve como operador ternario que ao ser enviado, ele verifica se é atualização do user ou um novo registro -->
 
+            <input type="hidden" id="id" name="id" v-model="id">
+
             <div class="input-container">
                 <label for="name">Nome</label>
                 <input type="text" id="name" name="name" v-model="name"  placeholder="Digite Seu Nome">
@@ -24,7 +26,7 @@
 
             <div class="input-container">
                 <label for="confirmpassword">Senha</label>
-                <input type="password" id="copnfirmpassword" name="copnfirmpassword" v-model="confirmpassword"  placeholder="Confirme a sua senha">
+                <input type="password" id="confirmpassword" name="copnfirmpassword" v-model="confirmpassword"  placeholder="Confirme a sua senha">
             </div>
 
             <InputSubmit :text="btnText"/>
@@ -42,9 +44,10 @@
         name: "RegisterForm",
         data() {
             return {
-                name: null,
+                id: (this.user && this.user._id) ?? null,
+                name: (this.user && this.user.name) ?? null,
                 /* ==>]  pois aqui inicialmente o valor do inmput é null*/
-                email: null,
+                email: (this.user && this.user.email) ?? null,
                 password: null,
                 confirmpassword: null,
                 msg: null,
@@ -128,6 +131,69 @@
 
                         }
 
+                    }, 2000)
+
+                })
+                .catch((err) => {
+
+                    console.log(err);
+
+                })
+
+            },
+            async update(e) {
+
+                e.preventDefault()
+
+                const data = {
+                    id: this.id,
+                    name: this.name,
+                    email:this.email,
+                    password: this.password,
+                    confirmpassword: this.confirmpassword
+                }
+
+                // transformando os dados em JSON
+                const jsonData = JSON.stringify(data)
+
+                const token = this.$store.getters.token
+
+                await fetch("http://127.0.0.1:3000/api/user", {
+
+                    method: "PATCH",
+                    headers: {
+                        "Content-type":"application/json",
+                        "auth-token": token
+                    },
+                    body: jsonData
+                    
+                })
+                .then((respo) => respo.json())
+                .then((data) => {
+
+                    if(data.error){
+
+                        this.msg = data.error
+                        this.msgClass = 'error'
+
+                        
+
+                    } else {
+
+                        this.msg = data.msg
+                        this.msgClass = 'sucess'
+
+                    }
+
+                    window.scrollTo({
+                        top: 100,
+                        behavior: 'smooth'
+                    })
+                    
+                    setTimeout(() => {
+
+                        this.msg = null
+                
                     }, 2000)
 
                 })
