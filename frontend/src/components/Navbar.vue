@@ -115,6 +115,7 @@
     #exitContainer{
         width: 35px;
         height: 55px;
+        margin: 0;
         background-color: transparent;
     }
 
@@ -178,9 +179,16 @@
 
         #exitContainer{
             position: absolute;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
             
-            right: calc(15vw + 30px) ;
+            right: calc(15vw + 20px) ;
             width: 5vw;
+        }
+
+        #exitImage{
+            margin: 0;
         }
 
     }

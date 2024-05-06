@@ -92,8 +92,9 @@ export default {
 
                 }, 2000)
 
-                
-
+            })
+            .catch((err) => {
+                console.log(err);
             })
         }
     }
