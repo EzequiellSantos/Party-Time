@@ -27,7 +27,7 @@ export default {
         padding: 40px 0px 100px 0px;
     }
 
-    h1{
+    #login h1{
         margin-bottom: 10px;
     }
 

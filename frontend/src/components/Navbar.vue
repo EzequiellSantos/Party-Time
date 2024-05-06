@@ -113,7 +113,9 @@
     } 
 
     #exitContainer{
-        width: 50px;
+        width: 35px;
+        height: 55px;
+        background-color: transparent;
     }
 
     #nav-links {
@@ -155,9 +157,11 @@
         
         #menu{
             display: flex;
+            justify-content: flex-start;
             cursor: default;
             width: 48px;
-            height: 38px;
+            height: 55px;
+            padding-left: 10px;
         }
 
         #iconMenuArrow{
@@ -174,7 +178,9 @@
 
         #exitContainer{
             position: absolute;
-            right: 13%;
+            
+            right: calc(15vw + 30px) ;
+            width: 5vw;
         }
 
     }
