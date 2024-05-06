@@ -1,7 +1,7 @@
 <template>
 
     <div id="form">
-        <Message :msg="msg" msgClass="msgClass" />
+        <Message :msg="msg" :msgClass="msgClass" />
         <form id="loginForm" @submit="login($event)">
 
             <div class="input-container">
@@ -32,9 +32,69 @@ export default {
         Message,
         InputSubmit
     },
+    data() {
+        return {
+            email: null,
+            password: null,
+            msg: null,
+            msgClass: null
+        }
+    },
     methods: {
-        login(e){
-            e.preventDefault
+        async login(e){
+
+            e.preventDefault()
+
+            const data = {
+                email: this.email,
+                password: this.password
+            }
+
+            const jsonData = JSON.stringify(data)
+
+            await fetch("http://127.0.0.1:3000/api/auth/login", {
+                method: "POST",
+                headers: {"Content-type":"application/json"},
+                body: jsonData
+            })
+            .then((res) => res.json())
+            .then((data) => {
+
+                let auth = false
+
+                if(data.error){
+
+                    this.msg = data.error
+                    this.msgClass = 'error'
+
+                } else {
+
+                    auth = true
+                    this.msg = data.msg
+                    this.msgClass = 'sucess'
+
+                    // emit event for auth an user
+                    this.$store.commit("authenticated", { token: data.token, userId: data.userId })
+
+                }
+                    
+                setTimeout(() => {
+                    if(!auth){
+
+                        this.msg = null
+
+                    } else {
+
+                        //redirect
+                        this.$router.push("Dashboard")
+
+                    }
+
+                }, 2000)
+
+                
+
+            })
         }
     }
 }
@@ -45,7 +105,8 @@ export default {
     #form{
         margin: auto;
         display: flex;
-        align-content: center;
+        flex-direction: column;
+        align-items: center;
         justify-content: center;
     }
 
