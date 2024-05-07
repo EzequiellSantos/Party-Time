@@ -51,7 +51,7 @@ router.patch("/", verifyToken, async (req, res) => {
     // create an user object
     const updateData = {
 
-        nome: req.body.name,
+        name: req.body.name,
         email: req.body.email
         
     }
@@ -82,10 +82,9 @@ router.patch("/", verifyToken, async (req, res) => {
         
     } catch (error) {
 
-        res.status(400).json({ error })
+       return  res.status(400).json({ error })
 
     }
-
 
 })
 

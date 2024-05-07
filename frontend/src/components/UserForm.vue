@@ -176,8 +176,6 @@
                         this.msg = data.error
                         this.msgClass = 'error'
 
-                        
-
                     } else {
 
                         this.msg = data.msg
