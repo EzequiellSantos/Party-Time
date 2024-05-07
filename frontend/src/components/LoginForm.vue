@@ -11,7 +11,7 @@
 
             <div class="input-container">
                 <label for="password">Senha:</label>
-                <input type="password" name="password" id="password" v-model="password" placeholder="Digite a sua senha">
+                <input type="password" name="password" id="password" v-model="password" placeholder="Digite a sua senha" minlength="4" min="4" value="0" required>
             </div>
 
             <InputSubmit text="Entrar" />
