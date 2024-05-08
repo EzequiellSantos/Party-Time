@@ -2,7 +2,7 @@
 
     <div class="newparty">
         <h1>Adicione a sua festa:</h1>
-        <PartyForm :party="{}" page="newparty" :btnText="text" />
+        <PartyForm :party="{}" page="newparty" btnText="Criar Festa&#33" />
     </div>
 
 </template>
@@ -21,6 +21,7 @@
 <style scoped>
     .newparty{
         text-align: center;
+        margin: auto;
         padding: 40px 0px 100px 0px;
     }
 
