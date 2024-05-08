@@ -4,7 +4,7 @@
 
         <div class="title-container">
             <h1>Gerencie seus eventos</h1>
-            <nav-link to="/newparty" class="btn">Cadastrar Festa</nav-link>
+            <router-link to="/newparty" class="btn">Cadastrar Festa</router-link>
         </div>
     
         <div v-if="parties.length > 0">
@@ -54,4 +54,26 @@ export default {
         margin: auto;
         margin-bottom: 20px;
     }
+
+    .title-container{
+        padding: 20px;
+    }
+
+    .btn{
+        padding: 10px 16px;
+        background-color: #4d4d4d;
+        color: #fff;
+        margin: 5px 0;
+        text-decoration: none;
+        border: none;
+        border-radius: 7px;
+        font-size: 0.9rem;
+        cursor: pointer;
+        transition: .3s ease-in;
+    }
+    
+    .btn:is(:hover, :active){
+        background-color: #757575;
+    }
+
 </style>
