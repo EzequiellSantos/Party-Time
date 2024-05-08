@@ -15,18 +15,18 @@
 
             <div class="input-container">
                 <label for="email">E-mail</label>
-                <input type="text" id="email" name="email" v-model="email"  placeholder="Digite o seu E-mail">
+                <input type="email" id="email" name="email" v-model="email" required  placeholder="Digite o seu E-mail">
                 <!-- o v-model email, serve para referenciar o valor do input apos o usuário digitar [==> -->
             </div>
 
             <div class="input-container">
                 <label for="password">Senha</label>
-                <input type="password" id="password" name="password" v-model="password"  placeholder="Digite a sua senha">
+                <input type="password" id="password" name="password" v-model="password" min="4" minlength="4"  placeholder="Digite a sua senha">
             </div>
 
             <div class="input-container">
                 <label for="confirmpassword">Senha</label>
-                <input type="password" id="confirmpassword" name="copnfirmpassword" v-model="confirmpassword"  placeholder="Confirme a sua senha">
+                <input type="password" id="confirmpassword" name="copnfirmpassword" v-model="confirmpassword"  placeholder="Confirme a sua senha" min="4" minlength="4">
             </div>
 
             <InputSubmit :text="btnText"/>
