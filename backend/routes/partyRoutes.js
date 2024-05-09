@@ -242,13 +242,13 @@ router.delete("/", verifyToken, async (req, res) => {
 })
 
 // update the party 
-router.put("/", verifyToken, upload.fields([{ name: "photos" }]), async (req, res) => {
+router.patch("/", verifyToken, upload.fields([{ name: "photos" }]), async (req, res) => {
 
     // req body
     const title = req.body.title
     const description = req.body.description
-    const partyDate = req.body.partyDate
-    const partyId = req.body._id
+    const partyDate = req.body.party_date
+    const partyId = req.body.id
     const partyUserId = req.body.user_id
 
     let files = []
@@ -290,7 +290,7 @@ router.put("/", verifyToken, upload.fields([{ name: "photos" }]), async (req, re
     // create photos array with image path
     let photos = []
 
-    if (files && files.length > 0) {
+    if (req.files && req.files.photos &&  req.files.photos.length > 0) {
 
         // sending photos path
         for (const file of req.files.photos) {
@@ -298,11 +298,13 @@ router.put("/", verifyToken, upload.fields([{ name: "photos" }]), async (req, re
         }
 
         party.photos = photos
+        console.log('pika suja');
 
     }
 
     try {
 
+        console.log(party)
         // returns updated data
         const updateParty = await Party.findOneAndUpdate({ _id: partyId, userId: userId }, { $set: party }, { new: true })
         res.json({ error: null, msg: "Evento atualizado com sucesso", data: updateParty })
