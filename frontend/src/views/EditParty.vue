@@ -52,6 +52,7 @@
                     // cortar a string e exibir apenas a data do ano, mes e  dia
                     this.party.partyDate = this.party.partyDate.substring(0, 10)
 
+                    // substituindo o caminho public, para o caminho atual do servidor para que se torne voisivel para o usuário as fotos
                     this.party.photos.forEach((photo, index) => {
 
                         this.party.photos[index] = photo.replace('public', 'http://127.0.0.1:3000')
