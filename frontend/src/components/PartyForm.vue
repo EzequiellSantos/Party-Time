@@ -129,10 +129,10 @@ export default {
                         this.$router.push("Dashboard")
                     }
                            
-                }, 2000)
+                }, 1000)
 
                 window.scrollTo({
-                    top: 100,
+                    top: 110,
                     behavior: "smooth"
                 })
 

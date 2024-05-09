@@ -16,6 +16,8 @@
 
             <InputSubmit text="Entrar" />
 
+            <p id="linkToRegister">Não tem uma conta? <router-link to="/register">Criar uma conta</router-link></p>
+
         </form>
     </div>
 
@@ -90,7 +92,7 @@ export default {
 
                     }
 
-                }, 2000)
+                }, 1500)
 
             })
             .catch((err) => {
@@ -109,6 +111,7 @@ export default {
         flex-direction: column;
         align-items: center;
         justify-content: center;
+        margin-bottom: 50px;
     }
 
     #login-form{
@@ -151,6 +154,10 @@ export default {
     .input-container > input:focus{
         outline: 0;
         border-bottom: 1px solid #4e4e4e;
+    }
+
+    #linkToRegister{
+        margin: 30px 0 50px;
     }
 
 </style>
