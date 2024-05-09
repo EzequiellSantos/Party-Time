@@ -15,7 +15,7 @@
 
         <div v-else>
 
-            <p>Você ainda não tem festas cadastradas. <router-link to="/newparty">Criar Agora!</router-link></p>
+            <p>Você ainda não tem festas cadastradas, <router-link to="/newparty">Clique aqui para cria suas festa!</router-link></p>
 
         </div>
 
@@ -94,7 +94,7 @@ export default {
         padding: 20px;
         display: flex;
         flex-direction: row;
-        justify-content: space-evenly;
+        justify-content: space-around;
         align-items: center;
     }
 
