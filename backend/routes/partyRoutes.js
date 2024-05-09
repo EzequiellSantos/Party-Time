@@ -52,9 +52,8 @@ router.post("/", verifyToken, upload.fields([{ name: "photos" }]), async (req, r
 
         if (req.files && req.files.photos &&  req.files.photos.length > 0) {
 
-            files.forEach((photos, i) => { // sending photos path
-                photos[i] = photos.path
-            })
+            // sending photos path
+            photos = req.files.photos.map(file => file.path)
 
         }
 
