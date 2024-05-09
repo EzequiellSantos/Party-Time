@@ -65,6 +65,61 @@
                 msgClass: null,
                 msg: null
             }
+        },
+        methods: {
+            async remove(id){
+
+                // get id and token from store
+                const userId = this.$store.getters.userId
+                const token = this.$store.getters.token
+
+                const data = {
+                    id: id,
+                    userId: userId 
+                }
+
+                const jsonData = JSON.stringify(data)
+
+                await fetch('http://127.0.0.1:3000/api/party', {
+                    method: 'DELETE',
+                    headers: {
+                        "Content-type":"application/json",
+                        "auth-token": token,
+                    },
+                    body: jsonData
+                })
+                .then((resp) => resp.json())
+                .then((data) => {
+                    
+                    if(data.error){
+                        this.msg = data.error
+                        this.msgClass = 'error'
+                    } else {
+
+                        this.msg = data.msg
+                        this.msgClass = 'sucess'
+
+                    }
+
+                    setTimeout(() => {
+
+                        this.msg = null   
+                        this.$parent.getParties()     
+
+                    }, 1000)
+
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    })
+
+                })
+                .catch((error) => {
+
+                    console.log(error);
+
+                })
+            }
         }
     }
 
@@ -124,10 +179,6 @@
         display: flex;
         flex-direction: row;
         align-items: center;
-    }
-
-    .data-actions-container > div{
-
     }
 
     .edit-btn{
