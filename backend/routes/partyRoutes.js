@@ -8,7 +8,7 @@ const User = require("../models/user")
 
 // define file storage
 const diskStorage = require("../helpers/file-storage")
-const upload = multer({ storage: diskStorage }).array("photos", 10)//  10 é o limite de arquivos
+const upload = multer({ storage: diskStorage })
 
 // middlewares
 const verifyToken = require("../helpers/check-token")
@@ -50,7 +50,7 @@ router.post("/", verifyToken, upload.fields([{ name: "photos" }]), async (req, r
         // create photos array with image path
         let photos = []
 
-        if (files && files.length > 0) {
+        if (req.files && req.files.photos &&  req.files.photos.length > 0) {
 
             files.forEach((photos, i) => { // sending photos path
                 photos[i] = photos.path
@@ -77,18 +77,14 @@ router.post("/", verifyToken, upload.fields([{ name: "photos" }]), async (req, r
 
         } catch (error) {
 
-            if (error instanceof multer.MulterError) {
-
-                return res.status(500).json({ error: err.message }); // erro no multer
-
-            }
-
+            console.error(error);
             return res.status(400).json({ error })
 
         }
 
     } catch (err) {
 
+        console.error(err);
         return res.status(400).json({ error: "Acesso negado" }), console.log(err)
 
     }
@@ -108,6 +104,7 @@ router.get("/all", async (req, res) => {
 
     } catch (error) {
 
+        console.error(error);
         return res.status(400).json({ error }), console.log(error)
 
     }
@@ -132,6 +129,7 @@ router.get("/userparties", verifyToken, async (req, res) => {
 
     } catch (error) {
 
+        console.error(error);
         return res.status(400).json({ error })
 
     }
@@ -166,6 +164,7 @@ router.get("/userparty/:id", verifyToken, async (req, res) => {
 
     } catch (error) {
 
+        console.error(error);
         return res.status(400).json({ error }), console.log(error);
 
     }
@@ -208,6 +207,7 @@ router.get("/:id", async (req, res) => {
 
     } catch (err) {
 
+        console.error(err);
         return res.status(400).json({ msg: "Este evento não existe" })
 
     }
@@ -233,6 +233,7 @@ router.delete("/", verifyToken, async (req, res) => {
 
     } catch (err) {
 
+        console.error(err);
         res.status(400).json({ error: "Acesso Negado" })
 
     }
@@ -307,6 +308,7 @@ router.put("/", verifyToken, upload.fields([{ name: "photos" }]), async (req, re
 
     } catch (error) {
 
+        console.error(error);
         res.status(400).json({ error })
 
     }
