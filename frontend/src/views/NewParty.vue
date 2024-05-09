@@ -2,7 +2,7 @@
 
     <div class="newparty">
         <h1>Adicione a sua festa:</h1>
-        <PartyForm :party="{}" page="newparty" btnText="Criar Festa&#33" />
+        <PartyForm :party="{}" page="newparty" btnText="Criar Festa!" />
     </div>
 
 </template>

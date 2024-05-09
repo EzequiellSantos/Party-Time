@@ -8,7 +8,7 @@ const User = require("../models/user")
 
 // define file storage
 const diskStorage = require("../helpers/file-storage")
-const upload = multer({ storage: diskStorage })
+const upload = multer({ storage: diskStorage }).array("photos", 10)//  10 é o limite de arquivos
 
 // middlewares
 const verifyToken = require("../helpers/check-token")
@@ -16,8 +16,7 @@ const verifyToken = require("../helpers/check-token")
 // helpers 
 const getUserByToken = require("../helpers/get-user-by-token")
 
-// get party
-
+// create a new party
 router.post("/", verifyToken, upload.fields([{ name: "photos" }]), async (req, res) => {
 
     // req data
@@ -33,7 +32,7 @@ router.post("/", verifyToken, upload.fields([{ name: "photos" }]), async (req, r
 
     //validations
     if (title == "null" || description == "null" || partyDate == "null") {
-        return res.status(400).json({ error: "Preenhca todos os campos (Título, descrição e data)" })
+        return res.status(400).json({ error: "Preenhca todos os campos (título, descrição e data)" })
     }
 
     // verify user 
@@ -77,6 +76,12 @@ router.post("/", verifyToken, upload.fields([{ name: "photos" }]), async (req, r
             res.json({ error: null, msg: "Evento criado com sucesso", data: newParty })
 
         } catch (error) {
+
+            if (error instanceof multer.MulterError) {
+
+                return res.status(500).json({ error: err.message }); // erro no multer
+
+            }
 
             return res.status(400).json({ error })
 

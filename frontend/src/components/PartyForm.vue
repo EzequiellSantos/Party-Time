@@ -56,8 +56,8 @@ export default {
             id: this.party._id || null,
             title: this.title || null,
             description: this.party.description || null,
-            party_date: this.party.partyDate || null,
-            photos: this.party.photos || null,
+            party_date: this.party.party_date || null,
+            photos: this.party.photos || [], 
             privacy: this.party.privacy || false,
             user_id: this.party.userId || null,
             msg: null,
@@ -72,17 +72,85 @@ export default {
     text: "Criar Festa!",
     methods: {
         async createParty(e){
+
             e.preventDefault()
-            console.log('&#128048;')
+            const formData = new FormData()
+
+            formData.append('title', this.title)
+            formData.append('description', this.description)
+            formData.append('party_date', this.party_date)
+            formData.append('privacy', this.privacy)
+            
+            if(this.photos.length > 0) {
+
+                for(const i of Object.keys(this.photos)) {
+
+                    formData.append('photos', this.photos[i])
+
+                }
+
+            }
+
+            // get token from store
+            const token = this.$store.getters.token
+
+            await fetch('http://localhost:3000/api/party', {
+                method: 'POST',
+                headers: {
+                    "auth-token": token
+                },
+                body: formData
+            })
+            .then((resp) => resp.json())
+            .then((data) => {
+
+                if(data.error){
+
+                    this.msg = data.error
+                    this.msgClass = 'error'
+
+                } else {
+
+                    this.msg = data.msg
+                    this.msgClass = 'sucess'
+
+                }
+
+                setTimeout(() => {
+
+                    if(this.msg != null){
+                        
+                        this.msg = null
+
+                    }
+
+                    // redirect
+                    if(!data.error){
+                        this.$router.push("Dashboard")
+                    }
+                           
+                }, 2000)
+
+                window.scrollTo({
+                    top: 100,
+                    behavior: "smooth"
+                })
+
+
+
+            })
+ 
         },
-        onChange(){
+        onChange(e){
 
             this.photos = e.target.files
             this.showMiniImages = false
 
         },
         async updateParty(e){
+
             e.preventDefault()
+
         }
     }
 }
