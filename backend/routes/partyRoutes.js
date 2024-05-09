@@ -53,7 +53,9 @@ router.post("/", verifyToken, upload.fields([{ name: "photos" }]), async (req, r
         if (req.files && req.files.photos &&  req.files.photos.length > 0) {
 
             // sending photos path
-            photos = req.files.photos.map(file => file.path)
+            for (const file of req.files.photos) {
+                photos.push(file.path);
+            }
 
         }
 
