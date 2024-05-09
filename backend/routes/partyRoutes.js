@@ -292,9 +292,10 @@ router.put("/", verifyToken, upload.fields([{ name: "photos" }]), async (req, re
 
     if (files && files.length > 0) {
 
-        files.forEach((photos, i) => { // sending photos path
-            photos[i] = photos.path
-        })
+        // sending photos path
+        for (const file of req.files.photos) {
+            photos.push(file.path);
+        }
 
         party.photos = photos
 

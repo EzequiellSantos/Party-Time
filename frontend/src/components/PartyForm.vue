@@ -30,7 +30,7 @@
 
             <div v-if="page === 'editparty' && showMiniImages" class="mini-images">
                 <p>Imagens atuais:</p>
-                <img v-for="(photo, index) in photos" :src="`${photos}`" :key="index">
+                <img v-for="(photo, index) in photos" :src="`${photo}`" :key="index">
             </div>
 
             <div class="input-container" id="privacyContainer">
@@ -208,8 +208,14 @@ export default {
         border-radius: 15px;
 
         display: flex;
-        justify-content: flex-start;
-        flex-direction: column;
+        flex-wrap: wrap;
+
+    }
+
+    .mini-images > img{
+        height: 50px;
+        margin-right: 15px;
+        margin-bottom: 15px;
     }
 
     .input-container > label, .mini-images > p{
