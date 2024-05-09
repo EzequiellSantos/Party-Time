@@ -9,7 +9,7 @@
     
         <div v-if="parties.length > 0">
 
-            <h1>Tabela de festa</h1>
+            <DataTable :parties="parties" />
 
         </div>
 
@@ -24,13 +24,47 @@
 </template>
 
 <script>
-export default {
-    components: {
 
-    },
+import DataTable from "../components/DataTable.vue"
+
+export default {
     data(){
         return {
             parties: []
+        }
+    },
+    components: {
+        DataTable
+    },
+    created() {
+        // load user parties
+        this.getParties()
+    },
+    methods: {
+        async getParties(){
+
+            // get token
+            const token = this.$store.getters.token
+
+            await fetch('http://localhost:3000/api/party/userparties', {
+                method: "GET",
+                headers: {
+                    "Content-type":"application/json",
+                    "auth-token": token
+                },
+            })
+            .then((resp) => resp.json())
+            .then((data) => {
+
+                this.parties = data.parties
+
+            })
+            .catch((error) => {
+
+                console.log(error);
+
+            })
+
         }
     }
 }
@@ -40,6 +74,7 @@ export default {
     h1{
         color: #333333;
         text-align: center;
+
     }
 
     .dashboard{
@@ -57,13 +92,17 @@ export default {
 
     .title-container{
         padding: 20px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
     }
 
     .btn{
+        height: 37px;
         padding: 10px 16px;
         background-color: #4d4d4d;
         color: #fff;
-        margin: 5px 0;
         text-decoration: none;
         border: none;
         border-radius: 7px;
