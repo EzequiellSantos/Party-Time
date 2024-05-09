@@ -115,4 +115,15 @@ export default {
         background-color: #757575;
     }
 
+    @media (width < 580px) {
+        .title-container{
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .btn{
+            margin-top: 20px;
+        }
+    }
+
 </style>

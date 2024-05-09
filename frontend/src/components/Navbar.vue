@@ -100,6 +100,7 @@
 
     #nav img{
         width: 35px;
+        margin: 10px;
     }
 
     #nav-title {
