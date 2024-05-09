@@ -62,6 +62,14 @@ const routes = [
     meta: {
       requireAuth: true
     }
+  },
+  {
+    path: '/editparty/:id',
+    name: 'EditParty',
+    component: () => import(/* webpackChunkName: "editparty" */ '../views/EditParty.vue'),
+    meta: {
+      requireAuth: true
+    }
   }
 ]
 
