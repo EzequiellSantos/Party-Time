@@ -223,4 +223,14 @@
         margin: 5px 0;
     }
 
+    @media (width < 800px) {
+        .data-table-heading  > div, .data-row > div{
+            justify-content: center;
+        }
+
+        .data-actions-container, .data-actions-heading{
+            width: 10%;
+        }
+    }
+
 </style>
