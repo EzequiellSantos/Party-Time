@@ -298,17 +298,14 @@ router.patch("/", verifyToken, upload.fields([{ name: "photos" }]), async (req, 
         }
 
         party.photos = photos
-        console.log('pika suja');
 
     }
 
     try {
 
-        console.log(party)
         // returns updated data
         const updateParty = await Party.findOneAndUpdate({ _id: partyId, userId: userId }, { $set: party }, { new: true })
         res.json({ error: null, msg: "Evento atualizado com sucesso", data: updateParty })
-        console.log(updateParty);
 
     } catch (error) {
 
