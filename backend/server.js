@@ -1,4 +1,5 @@
 //modules
+require('dotenv').config()
 const express = require("express")
 const mongoose = require("mongoose")
 const bodyParser = require("body-parser")
@@ -15,6 +16,8 @@ const partyRouter = require("./routes/partyRoutes.js")
 
 // configurações
 const dbname = "partyTimeb"
+const dbuser = process.env.DB_USER
+const dbpass = process.env.DB_PASS
 const port = 3000
 
 const app = express()
@@ -28,7 +31,7 @@ app.use("/api/user", userRouter)
 app.use("/api/party", partyRouter)
 
 // Conexão mongodb
-mongoose.connect(`mongodb://127.0.0.1/${dbname}`)
+mongoose.connect(`mongodb+srv://${dbuser}:${dbpass}@cluster1.nax4gsf.mongodb.net/${dbname}?retryWrites=true&w=majority&appName=Cluster1`)
 
 app.get("/", (req, res) => {
 
