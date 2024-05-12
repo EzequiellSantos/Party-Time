@@ -54,7 +54,7 @@ export default {
 
             const jsonData = JSON.stringify(data)
 
-            await fetch("http://127.0.0.1:3000/api/auth/login", {
+            await fetch("http://192.168.0.107:3000/api/auth/login", {
                 method: "POST",
                 headers: {"Content-type":"application/json"},
                 body: jsonData

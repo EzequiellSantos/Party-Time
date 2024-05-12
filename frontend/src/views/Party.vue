@@ -74,7 +74,7 @@
                     
                     this.party.photos.forEach((photo, index) => {
 
-                        this.party.photos[index] = photo.replace('public', 'http://127.0.0.1:3000').replaceAll("\\", "/")
+                        this.party.photos[index] = photo.replace('public', 'http://192.168.0.107:3000').replaceAll("\\", "/")
 
                     })
                                         

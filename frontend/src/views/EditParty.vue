@@ -36,7 +36,7 @@
                 const id = this.$route.params.id
                 const token = this.$store.getters.token
                 
-                await fetch(`http://127.0.0.1:3000/api/party/${id}`, {
+                await fetch(`http://192.168.0.107:3000/api/party/${id}`, {
                     method: "GET",
                     headers: {
                         "Content-type":"application/json",

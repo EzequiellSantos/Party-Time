@@ -38,7 +38,7 @@
 
       async getParties(){
 
-        await fetch('http://127.0.0.1:3000/api/party/all', {
+        await fetch('http://192.168.0.107:3000/api/party/all', {
           method: "GET",
           headers: {
             "Content-type":"application/json"
@@ -59,7 +59,7 @@
 
               party.photos.forEach((photo, index) => {
 
-                party.photos[index] = photo.replace('public', 'http://127.0.0.1:3000').replaceAll("\\", "/")
+                party.photos[index] = photo.replace('public', 'http://192.168.0.107:3000').replaceAll("\\", "/")
 
               })
 

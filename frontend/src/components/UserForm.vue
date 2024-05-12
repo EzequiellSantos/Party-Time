@@ -78,7 +78,7 @@
                 // transformando os dados em JSON
                 const jsonData = JSON.stringify(data)
 
-                await fetch("http://127.0.0.1:3000/api/auth/register", {
+                await fetch("http://192.168.0.107:3000/api/auth/register", {
 
                     method: "POST",
                     headers: {"Content-type":"application/json"},

@@ -34,7 +34,7 @@ export default {
             const id = this.$store.getters.userId
             const token = this.$store.getters.token
 
-            await fetch(`http://127.0.0.1:3000/api/user/${id}`, {
+            await fetch(`http://192.168.0.107:3000/api/user/${id}`, {
                 method: "GET",
                 headers: {
                     "Content-type":"application/json",
