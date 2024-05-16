@@ -2,7 +2,7 @@
     <div id="nav">
 
         <router-link to="/" id="logo-container">
-            <img src="/img/partytimelogo.png" alt="logo party time">
+            <img src="https://raw.githubusercontent.com/EzequiellSantos/Party-Time/main/frontend/public/img/partytimelogo.png" alt="logo party time">
         </router-link>
         <h2 id="nav-title">Party Time</h2>
 
