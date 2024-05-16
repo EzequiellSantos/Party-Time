@@ -1,8 +1,9 @@
 {
     "version": 2,
+    "name": "frontend",
     "builds": [
       {
-        "src": "package.json",
+        "src": "src/main.js",
         "use": "@vercel/static-build",
         "config": {
           "distDir": "dist"
