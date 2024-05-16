@@ -136,7 +136,7 @@
                 })
                 .catch((err) => {
 
-                    console.log(err);
+                    console.log(err, ' hi i am really here');
 
                 })
 
