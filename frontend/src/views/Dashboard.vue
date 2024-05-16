@@ -46,7 +46,7 @@ export default {
             // get token
             const token = this.$store.getters.token
 
-            await fetch('http://192.168.0.107:3000/api/party/userparties', {
+            await fetch('https://party-time-eight.vercel.app/api/party/userparties', {
                 method: "GET",
                 headers: {
                     "Content-type":"application/json",

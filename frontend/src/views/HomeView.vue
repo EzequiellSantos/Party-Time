@@ -38,7 +38,7 @@
 
       async getParties(){
 
-        await fetch('http://192.168.0.107:3000/api/party/all', {
+        await fetch('https://party-time-eight.vercel.app/api/party/all', {
           method: "GET",
           headers: {
             "Content-type":"application/json"
@@ -59,7 +59,7 @@
 
               party.photos.forEach((photo, index) => {
 
-                party.photos[index] = photo.replace('public', 'http://192.168.0.107:3000').replaceAll("\\", "/")
+                party.photos[index] = photo.replace('public', 'https://party-time-eight.vercel.app').replaceAll("\\", "/")
 
               })
 
