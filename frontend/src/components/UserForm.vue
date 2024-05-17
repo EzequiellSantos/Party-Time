@@ -96,11 +96,6 @@
                         this.msg = data.error // exibindo mensagem de error  na notificação
                         this.msgClass = "error" // definindo as classes de estatus como error
 
-                        window.scrollTo({
-                        top: 100,
-                        behavior: 'smooth'
-                        })
-
                     } else {
 
                         auth = true
@@ -108,18 +103,18 @@
                         this.msg = data.msg
                         this.msgClass = 'sucess'
 
-                        window.scrollTo({
-                        top: 100,
-                        behavior: 'smooth'
-                        })
-
                         // emit event for auth an user
                         this.$store.commit("authenticated", { token: data.token, userId: data.userId })
 
-
                     }
 
+                    window.scrollTo({
+                        top: 100,
+                        behavior: 'smooth'
+                    })
+
                     setTimeout(() => {
+                        
                         if(!auth){
 
                             this.msg = null
