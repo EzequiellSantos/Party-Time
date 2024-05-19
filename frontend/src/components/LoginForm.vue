@@ -51,7 +51,7 @@ export default {
 
             const verceLink = 'https://party-time-eight.vercel.app'
 
-            const loginUrl = `${verceLink}/api/auth/register`;
+            const loginUrl = `${verceLink}/api/auth/login`;
 
             e.preventDefault()
 
