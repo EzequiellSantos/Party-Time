@@ -31,7 +31,7 @@ app.use("/api/user", userRouter)
 app.use("/api/party", partyRouter)
 
 // Conexão mongodb
-mongoose.connect(`mongodb+srv://${dbuser}:${dbpass}@cluster1.nax4gsf.mongodb.net/${dbname}?retryWrites=true&w=majority&appName=Cluster1`)
+mongoose.connect(`mongodb+srv://${dbuser}:${dbpass}@cluster1.nax4gsf.mongodb.net/${dbname}?retryWrites=true&w=majority&appName=Cluster1`, { useNewUrlParser: true, useUnifiedTopology: true })
 
 app.get("/", (req, res) => {
 
