@@ -132,6 +132,8 @@
                 .catch((err) => {
 
                     console.log(err, ' hi i am really here');
+                    this.msg = err.message || 'um erro ocorreu';
+                    this.msgClass = "error";
 
                 })
 
@@ -193,6 +195,8 @@
                 .catch((err) => {
 
                     console.log(err, " hi, i'am here");
+                    this.msg = err.message || 'um erro ocorreu';
+                    this.msgClass = "error";
 
                 })
 

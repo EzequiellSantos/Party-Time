@@ -97,6 +97,8 @@ export default {
             })
             .catch((err) => {
                 console.log(err);
+                this.msg = err.message || 'um erro ocorreu';
+                this.msgClass = "error";
             })
         }
     }
