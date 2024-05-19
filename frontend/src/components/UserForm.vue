@@ -65,6 +65,7 @@
             // quando a action for um registro
             async register(e) { 
 
+<<<<<<< HEAD
                 const baseUrl = process.env.NODE_ENV === 'development'
                 ? 'http://127.0.0.1:3000'
                 : 'https://party-time-eight.vercel.app';
@@ -73,6 +74,8 @@
 
                 const loginUrl = `${verceLink}/api/auth/register`;
 
+=======
+>>>>>>> parent of c4a5c5d (add execution in two ambients)
                 // não fazer mais submissao por html e sim por JS
                 e.preventDefault()
 
@@ -86,7 +89,7 @@
                 // transformando os dados em JSON
                 const jsonData = JSON.stringify(data)
 
-                await fetch(loginUrl, {
+                await fetch("https://party-time-eight.vercel.app/api/auth/register", {
 
                     method: "POST",
                     headers: {"Content-type":"application/json"},
@@ -140,9 +143,6 @@
                 .catch((err) => {
 
                     console.log(err, ' hi i am really here');
-                    // Manusear o erro corretamente
-                    this.msg = err.message || 'An error occurred';
-                    this.msgClass = "error";
 
                 })
 
@@ -164,7 +164,7 @@
 
                 const token = this.$store.getters.token
 
-                await fetch(loginUrl, {
+                await fetch("https://party-time-eight.vercel.app/api/user", {
 
                     method: "PATCH",
                     headers: {
@@ -203,10 +203,7 @@
                 })
                 .catch((err) => {
 
-                    console.log(err, ' hi i am really here');
-                    // Manusear o erro corretamente
-                    this.msg = err.message || 'An error occurred';
-                    this.msgClass = "error";
+                    console.log(err, " hi, i'am here");
 
                 })
 
