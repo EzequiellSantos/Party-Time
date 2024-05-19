@@ -45,17 +45,6 @@ export default {
     methods: {
         async login(e){
 
-<<<<<<< HEAD
-            const baseUrl = process.env.NODE_ENV === 'development'
-            ? 'http://127.0.0.1:3000'
-            : 'https://party-time-eight.vercel.app';
-
-            const verceLink = 'https://party-time-eight.vercel.app'
-
-            const loginUrl = `${verceLink}/api/auth/login`;
-
-=======
->>>>>>> parent of c4a5c5d (add execution in two ambients)
             e.preventDefault()
 
             const data = {
