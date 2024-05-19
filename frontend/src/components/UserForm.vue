@@ -69,7 +69,9 @@
                 ? 'http://127.0.0.1:3000'
                 : 'https://party-time-eight.vercel.app';
 
-                const loginUrl = `${baseUrl}/api/auth/register`;
+                const verceLink = 'https://party-time-eight.vercel.app'
+
+                const loginUrl = `${verceLink}/api/auth/register`;
 
                 // não fazer mais submissao por html e sim por JS
                 e.preventDefault()

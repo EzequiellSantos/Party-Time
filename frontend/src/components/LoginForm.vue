@@ -49,7 +49,9 @@ export default {
             ? 'http://127.0.0.1:3000'
             : 'https://party-time-eight.vercel.app';
 
-            const loginUrl = `${baseUrl}/api/auth/login`;
+            const verceLink = 'https://party-time-eight.vercel.app'
+
+            const loginUrl = `${verceLink}/api/auth/register`;
 
             e.preventDefault()
 
