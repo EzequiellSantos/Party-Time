@@ -65,6 +65,12 @@
             // quando a action for um registro
             async register(e) { 
 
+                const baseUrl = process.env.NODE_ENV === 'development'
+                ? 'http://127.0.0.1:3000'
+                : 'https://party-time-eight.vercel.app';
+
+                const loginUrl = `${baseUrl}/api/auth/register`;
+
                 // não fazer mais submissao por html e sim por JS
                 e.preventDefault()
 
@@ -78,7 +84,7 @@
                 // transformando os dados em JSON
                 const jsonData = JSON.stringify(data)
 
-                await fetch("https://party-time-eight.vercel.app/api/auth/register", {
+                await fetch(loginUrl, {
 
                     method: "POST",
                     headers: {"Content-type":"application/json"},
@@ -132,6 +138,9 @@
                 .catch((err) => {
 
                     console.log(err, ' hi i am really here');
+                    // Manusear o erro corretamente
+                    this.msg = err.message || 'An error occurred';
+                    this.msgClass = "error";
 
                 })
 
@@ -153,7 +162,7 @@
 
                 const token = this.$store.getters.token
 
-                await fetch("https://party-time-eight.vercel.app/api/user", {
+                await fetch(loginUrl, {
 
                     method: "PATCH",
                     headers: {
@@ -192,7 +201,10 @@
                 })
                 .catch((err) => {
 
-                    console.log(err, " hi, i'am here");
+                    console.log(err, ' hi i am really here');
+                    // Manusear o erro corretamente
+                    this.msg = err.message || 'An error occurred';
+                    this.msgClass = "error";
 
                 })
 

@@ -45,6 +45,12 @@ export default {
     methods: {
         async login(e){
 
+            const baseUrl = process.env.NODE_ENV === 'development'
+            ? 'http://127.0.0.1:3000'
+            : 'https://party-time-eight.vercel.app';
+
+            const loginUrl = `${baseUrl}/api/auth/login`;
+
             e.preventDefault()
 
             const data = {
@@ -54,7 +60,7 @@ export default {
 
             const jsonData = JSON.stringify(data)
 
-            await fetch("https://party-time-eight.vercel.app/api/auth/login", {
+            await fetch(loginUrl, {
                 method: "POST",
                 headers: {"Content-type":"application/json"},
                 body: jsonData
