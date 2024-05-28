@@ -23,58 +23,74 @@
 </template>
 
 <script>
-  export default{
-    data(){
+  export default {
+    data() {
+
       return {
         parties: []
-      }
+      };
+
     },
     created() {
+
       // load public parties
-      this.getParties()
+      this.getParties();
 
     },
     methods: {
 
-      async getParties(){
+      async getParties() {
 
-        await fetch('https://party-time-backend.vercel.app/api/party/all', {
-          method: "GET",
-          headers: {
-            "Content-type":"application/json"
+        try {
+
+          const response = await fetch('https://party-time-backend.vercel.app/api/party/all', {
+
+            method: 'GET',
+            headers: {
+
+              'Content-Type': 'application/json'
+
+            }
+
+          });
+
+          if (!response.ok) {
+
+            throw new Error(`HTTP error! status: ${response.status}`);
+
           }
-        })
-        .then((resp) => resp.json())
-        .then((data) => {
 
-          data.parties.forEach((party, index) => {
+          const data = await response.json();
 
-            if(party.partyDate) {
+          this.parties = data.parties.map(party => {
 
-              party.partyDate = new Date(party.partyDate).toLocaleDateString()
-              
+            if (party.partyDate) {
+              party.partyDate = new Date(party.partyDate).toLocaleDateString();
             }
 
-            if(party.photos.length > 0) {
+            if (party.photos.length > 0) {
 
-              party.photos.forEach((photo, index) => {
-
-                party.photos[index] = photo.replace('public', 'https://party-time-backend.vercel.app').replaceAll("\\", "/")
-
-              })
+              party.photos = party.photos.map(photo =>
+                photo.replace('public', 'https://party-time-backend.vercel.app').replace(/\\/g, '/')
+              );
 
             }
 
-          })
+            return party;
 
-          this.parties = data.parties
+          });
 
-        })
+        } catch (error) {
+
+          console.error('Erro ao carregar as festas:', error);
+
+        }
 
       }
 
     }
-  }
+
+  };
 </script>
 
 <style scoped>
