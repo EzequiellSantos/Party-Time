@@ -36,7 +36,7 @@
                 const id = this.$route.params.id
                 const token = this.$store.getters.token
                 
-                await fetch(`https://party-time-eight.vercel.app/api/party/${id}`, {
+                await fetch(`https://party-time-backend.vercel.app/api/party/${id}`, {
                     method: "GET",
                     headers: {
                         "Content-type":"application/json",
@@ -55,7 +55,7 @@
                     // substituindo o caminho public, para o caminho atual do servidor para que se torne voisivel para o usuário as fotos
                     this.party.photos.forEach((photo, index) => {
 
-                        this.party.photos[index] = photo.replace('public', 'https://party-time-eight.vercel.app')
+                        this.party.photos[index] = photo.replace('public', 'https://party-time-backend.vercel.app')
 
                     })
 

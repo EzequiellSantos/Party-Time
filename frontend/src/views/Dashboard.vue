@@ -46,7 +46,7 @@ export default {
             // get token
             const token = this.$store.getters.token
 
-            await fetch('https://party-time-eight.vercel.app/api/party/userparties', {
+            await fetch('https://party-time-backend.vercel.app/api/party/userparties', {
                 method: "GET",
                 headers: {
                     "Content-type":"application/json",

@@ -51,7 +51,7 @@
                 const id = this.$route.params.id
                 const token = this.$store.getters.token
 
-                await fetch(`https://party-time-eight.vercel.app/api/party/${id}`, {
+                await fetch(`https://party-time-backend.vercel.app/api/party/${id}`, {
                     method: "GET",
                     headers: {
                         "Content-type":"application/json",
@@ -74,7 +74,7 @@
                     
                     this.party.photos.forEach((photo, index) => {
 
-                        this.party.photos[index] = photo.replace('public', 'https://party-time-eight.vercel.app').replaceAll("\\", "/")
+                        this.party.photos[index] = photo.replace('public', 'https://party-time-backend.vercel.app').replaceAll("\\", "/")
 
                     })
                                         

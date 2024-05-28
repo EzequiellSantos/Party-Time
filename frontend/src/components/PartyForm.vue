@@ -94,7 +94,7 @@ export default {
             // get token from store
             const token = this.$store.getters.token
 
-            await fetch('https://party-time-eight.vercel.app/api/party', {
+            await fetch('https://party-time-backend.vercel.app//api/party', {
                 method: 'POST',
                 headers: {
                     "auth-token": token
@@ -173,7 +173,7 @@ export default {
             // get token from store
             const token = this.$store.getters.token
 
-            await fetch('https://party-time-eight.vercel.app/api/party', {
+            await fetch('https://party-time-backend.vercel.app/api/party', {
                 method: 'PATCH',
                 headers: {
                     "auth-token": token

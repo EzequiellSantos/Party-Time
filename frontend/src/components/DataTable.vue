@@ -80,7 +80,7 @@
 
                 const jsonData = JSON.stringify(data)
 
-                await fetch('https://party-time-eight.vercel.app/api/party', {
+                await fetch('https://party-time-backend.vercel.app/api/party', {
                     method: 'DELETE',
                     headers: {
                         "Content-type":"application/json",
