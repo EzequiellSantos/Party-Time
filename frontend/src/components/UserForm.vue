@@ -78,7 +78,7 @@
                 // transformando os dados em JSON
                 const jsonData = JSON.stringify(data)
 
-                await fetch("https://party-time-backend.vercel.app//api/auth/register", {
+                await fetch("https://party-time-backend.vercel.app/api/auth/register", {
 
                     method: "POST",
                     headers: {"Content-type":"application/json"},
