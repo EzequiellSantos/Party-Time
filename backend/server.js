@@ -12,6 +12,7 @@ const partyRouter = require("./routes/partyRoutes.js")
 
 
 // middlewares
+app.use(bodyParser.json())
 
 
 // configurações
