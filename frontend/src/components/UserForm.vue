@@ -1,4 +1,4 @@
-<template>
+ <template>
     <div>
         <Message :msg="msg" :msgClass="msgClass" />
         <!-- msg= mensagem retornada | msgClass= estatus retornado -->

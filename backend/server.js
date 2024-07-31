@@ -23,7 +23,12 @@ const port = 3000
 
 const app = express()
 
-app.use(cors())
+const corsOptions = {
+    origin: '*', // Substitua pelo domínio do frontend
+    optionsSuccessStatus: 200
+};
+
+app.use(cors(corsOptions))
 app.use(express.json())
 app.use(express.static('public'))
 //atrelar as rotas no express
